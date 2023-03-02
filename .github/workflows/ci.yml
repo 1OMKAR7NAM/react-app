@@ -2,6 +2,8 @@ name: ci
 on:
      pull_request:
           branches: [develop]
+     push:
+       branches: [develop]
 
 jobs:
      first-job:
@@ -17,3 +19,11 @@ jobs:
                - run: npm test -- --coverage
                  env:
                       CI: true
+               - name: create build
+                 if: github.event_name=="push"
+                 run: npm run build    
+               - name: deploy to staging
+                 run: npx surge --project ./build --domain youthful-edge.surge.sh
+                 env:
+                   SURGE_LOGIN:${{secrets.SURGE_LOGIN}}
+                   SURGE_TOKEN:${{secrets.SURGE_TOKEN}}
