@@ -21,10 +21,9 @@ jobs:
                       CI: true
                - name: create build
                  if: github.event_name == 'push'
-                 run: npm run build    
+                 run: npm run build
                - name: deploy to staging
                  if: github.event_name == 'push'
                  run: npx surge --project ./build --domain youthful-edge.surge.sh
-                 env:
-                   SURGE_LOGIN:${{secrets.SURGE_LOGIN}}
-                   SURGE_TOKEN:${{secrets.SURGE_TOKEN}}
+                 env: SURGE_LOGIN:${{secrets.SURGE_LOGIN}}
+                      SURGE_TOKEN:${{secrets.SURGE_TOKEN}}
