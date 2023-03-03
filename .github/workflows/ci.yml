@@ -13,7 +13,7 @@ jobs:
                - name: use node js
                  uses: actions/setup-node@v1
                  with:
-                      node-version: '12.x'
+                      node-version: "12.x"
                - run: npm install
                - run: npm run format:check
                - run: npm test -- --coverage
@@ -26,5 +26,5 @@ jobs:
                  if: github.event_name == 'push'
                  run: npx surge --project ./build --domain youthful-edge.surge.sh
                  env:
-                      SURGE_LOGIN: '${{ secrets.SURGE_LOGIN }}'
-                      SURGE_TOKEN: '${{ secrets.SURGE_TOKEN }}'
+                      SURGE_LOGIN: "${{ secrets.SURGE_LOGIN }}"
+                      SURGE_TOKEN: "${{ secrets.SURGE_TOKEN }}"
