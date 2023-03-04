@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React with Aayan
+          Learn React with avi
         </a>
       </header>
     </div>
