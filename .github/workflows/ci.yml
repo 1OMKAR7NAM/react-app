@@ -1,9 +1,9 @@
 name: ci
 on:
      pull_request:
-          branches: [develop]
+          branches: [develop,master]
      push:
-          branches: [develop]
+          branches: [develop,master]
 
 jobs:
      first-job:
@@ -39,7 +39,10 @@ jobs:
                  uses: actions/upload-artifact@v1 
                  with:
                    name: build
-                   path: build                  
+                   path: build 
+               - name: create a release
+                 if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+                 run: npx semantic-release                     
                - name: deploy to staging
                  if: github.event_name == 'push'
                  run: npx surge --project ./build --domain youthful-edge.surge.sh
