@@ -26,9 +26,19 @@ jobs:
                - run: npm test -- --coverage
                  env:
                       CI: true
+               - name: artifact for coverage
+                 uses: actions/upload-artifact@v1 
+                 with:
+                   name: coverage
+                   path: coverage                   
                - name: create build
                  if: github.event_name == 'push'
                  run: npm run build
+               - name: artifact for build
+                 uses: actions/upload-artifact@v1 
+                 with:
+                   name: build
+                   path: build                  
                - name: deploy to staging
                  if: github.event_name == 'push'
                  run: npx surge --project ./build --domain youthful-edge.surge.sh
